@@ -4,22 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quore Salud · Gestión integral de salud ocupacional</title>
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Lexend Deca (Semibold) y Figtree -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Lexend+Deca:wght@500;600;700;800&display=swap" rel="stylesheet">
   <!-- Font Awesome 6 (Free) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    /* ----- RESET Y BASE ----- */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Inter', sans-serif;
-      color: #1a2a3a;
+      font-family: 'Figtree', sans-serif;
+      font-weight: 400;
+      color: #2a2a2a;
       background-color: #ffffff;
       line-height: 1.6;
     }
@@ -35,38 +41,57 @@
       padding: 0 24px;
     }
 
-    /* ----- BOTONES ----- */
+    /* ----- COLORES INSTITUCIONALES ----- */
+    :root {
+      --rojo: #bf272c;
+      --gris: #5f5c65;
+      --blanco: #ffffff;
+      --gris-claro: #f5f5f7;
+      --gris-borde: #e0e0e2;
+    }
+
+    /* ----- BOTONES (sin bordes redondeados) ----- */
     .btn {
       display: inline-block;
-      padding: 12px 32px;
-      border-radius: 50px;
+      padding: 14px 36px;
+      font-family: 'Figtree', sans-serif;
       font-weight: 600;
       font-size: 1rem;
-      transition: all 0.2s ease;
       border: none;
       cursor: pointer;
-      background: #0b2b4a;
+      transition: all 0.25s ease;
+      background: var(--rojo);
       color: white;
+      border-radius: 0; /* sin redondeo */
     }
     .btn:hover {
-      background: #0f3a60;
+      background: #a01f24;
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(11, 43, 74, 0.15);
+      box-shadow: 0 8px 24px rgba(191, 39, 44, 0.25);
     }
     .btn-outline {
       background: transparent;
-      border: 2px solid #0b2b4a;
-      color: #0b2b4a;
+      border: 2px solid var(--rojo);
+      color: var(--rojo);
     }
     .btn-outline:hover {
-      background: #0b2b4a;
+      background: var(--rojo);
       color: white;
     }
-    .btn-green {
-      background: #1b8c6e;
+    .btn-outline-light {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
     }
-    .btn-green:hover {
-      background: #157a5e;
+    .btn-outline-light:hover {
+      background: white;
+      color: var(--rojo);
+    }
+    .btn-gris {
+      background: var(--gris);
+    }
+    .btn-gris:hover {
+      background: #4a4750;
     }
 
     /* ----- HEADER / NAV ----- */
@@ -76,8 +101,8 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(8px);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(6px);
       box-shadow: 0 2px 12px rgba(0,0,0,0.04);
       padding: 12px 0;
     }
@@ -87,13 +112,15 @@
       align-items: center;
     }
     .logo {
-      font-weight: 800;
-      font-size: 1.6rem;
-      color: #0b2b4a;
+      font-family: 'Lexend Deca', sans-serif;
+      font-weight: 700;
+      font-size: 1.7rem;
+      color: var(--rojo);
       letter-spacing: -0.5px;
     }
     .logo span {
-      color: #1b8c6e;
+      color: var(--gris);
+      font-weight: 500;
     }
     .nav-links {
       display: flex;
@@ -102,21 +129,20 @@
       font-size: 0.95rem;
     }
     .nav-links a {
-      color: #1a2a3a;
+      color: #2a2a2a;
       transition: color 0.2s;
     }
     .nav-links a:hover {
-      color: #1b8c6e;
+      color: var(--rojo);
     }
     .nav-cta {
-      background: #0b2b4a;
+      background: var(--rojo);
       color: white !important;
-      padding: 8px 20px;
-      border-radius: 50px;
+      padding: 8px 22px;
       font-weight: 600;
     }
     .nav-cta:hover {
-      background: #1b8c6e !important;
+      background: #a01f24 !important;
       color: white !important;
     }
     .menu-toggle {
@@ -124,43 +150,44 @@
       font-size: 1.5rem;
       background: none;
       border: none;
-      color: #0b2b4a;
+      color: var(--rojo);
       cursor: pointer;
     }
 
-    /* ----- HERO ----- */
+    /* ----- HERO con imagen de fondo y overlay ----- */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, #0b2b4a 0%, #154b6e 100%);
       display: flex;
       align-items: center;
       padding-top: 80px;
       position: relative;
-      overflow: hidden;
+      background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed; /* efecto sutil */
     }
     .hero::after {
       content: '';
       position: absolute;
-      right: -10%;
-      top: -10%;
-      width: 50%;
-      height: 120%;
-      background: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') no-repeat center/cover;
-      opacity: 0.08;
-      transform: rotate(8deg);
-      pointer-events: none;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(191, 39, 44, 0.75); /* capa rojo con opacidad */
+      z-index: 1;
     }
     .hero .container {
+      position: relative;
+      z-index: 2;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 48px;
       align-items: center;
-      position: relative;
-      z-index: 2;
     }
     .hero-content h1 {
+      font-family: 'Lexend Deca', sans-serif;
+      font-weight: 600;
       font-size: 3.2rem;
-      font-weight: 800;
       color: white;
       line-height: 1.2;
       margin-bottom: 16px;
@@ -168,7 +195,7 @@
     }
     .hero-content p {
       font-size: 1.2rem;
-      color: rgba(255,255,255,0.8);
+      color: rgba(255,255,255,0.85);
       margin-bottom: 32px;
       max-width: 520px;
     }
@@ -177,46 +204,29 @@
       gap: 16px;
       flex-wrap: wrap;
     }
-    .hero-buttons .btn {
-      background: white;
-      color: #0b2b4a;
-    }
-    .hero-buttons .btn:hover {
-      background: #e6f0f5;
-    }
-    .hero-buttons .btn-outline-light {
-      background: transparent;
-      border: 2px solid white;
-      color: white;
-    }
-    .hero-buttons .btn-outline-light:hover {
-      background: white;
-      color: #0b2b4a;
-    }
-
     .hero-stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 20px;
-      background: rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.08);
       backdrop-filter: blur(4px);
       padding: 28px 24px;
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
     }
     .stat-item {
       color: white;
     }
     .stat-item .number {
-      font-size: 2rem;
-      font-weight: 800;
+      font-family: 'Lexend Deca', sans-serif;
+      font-weight: 600;
+      font-size: 2.2rem;
       display: block;
       line-height: 1.2;
-      color: #8bc34a;
+      color: white;
     }
     .stat-item .label {
       font-size: 0.9rem;
-      opacity: 0.7;
+      opacity: 0.8;
     }
 
     /* ----- SECCIONES GENERALES ----- */
@@ -224,15 +234,16 @@
       padding: 80px 0;
     }
     .section-title {
+      font-family: 'Lexend Deca', sans-serif;
+      font-weight: 600;
       font-size: 2.4rem;
-      font-weight: 700;
       margin-bottom: 16px;
-      color: #0b2b4a;
+      color: var(--rojo);
       letter-spacing: -0.01em;
     }
     .section-sub {
       font-size: 1.1rem;
-      color: #4a5a6a;
+      color: var(--gris);
       max-width: 640px;
       margin-bottom: 48px;
     }
@@ -244,7 +255,36 @@
       margin-right: auto;
     }
 
-    /* ----- QUIENES SOMOS ----- */
+    /* ----- FONDO DE IMAGEN CON OVERLAY (para algunas secciones) ----- */
+    .bg-image-section {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+    }
+    .bg-image-section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(95, 92, 101, 0.75); /* gris con opacidad */
+      z-index: 0;
+    }
+    .bg-image-section .container {
+      position: relative;
+      z-index: 1;
+    }
+    .bg-image-section .section-title {
+      color: white;
+    }
+    .bg-image-section .section-sub {
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* ----- QUIENES SOMOS (sin bordes redondeados) ----- */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -253,7 +293,7 @@
     }
     .about-text p {
       font-size: 1.05rem;
-      color: #2a3a4a;
+      color: #2a2a2a;
       margin-bottom: 16px;
     }
     .about-collage {
@@ -265,7 +305,7 @@
       width: 100%;
       height: 160px;
       object-fit: cover;
-      border-radius: 20px;
+      border-radius: 0; /* sin redondeo */
       box-shadow: 0 8px 24px rgba(0,0,0,0.06);
     }
     .about-collage img:first-child {
@@ -282,28 +322,29 @@
       margin-top: 16px;
     }
     .indicator-card {
-      background: #f5f9fc;
+      background: var(--gris-claro);
       padding: 28px 16px;
-      border-radius: 24px;
       text-align: center;
       transition: transform 0.2s;
+      border: 1px solid var(--gris-borde);
     }
     .indicator-card:hover {
       transform: translateY(-4px);
     }
     .indicator-card .number {
+      font-family: 'Lexend Deca', sans-serif;
+      font-weight: 600;
       font-size: 2.6rem;
-      font-weight: 800;
-      color: #0b2b4a;
+      color: var(--rojo);
       display: block;
       line-height: 1.2;
     }
     .indicator-card .label {
       font-size: 1rem;
-      color: #4a5a6a;
+      color: var(--gris);
     }
 
-    /* ----- POR QUÉ ELEGIR ----- */
+    /* ----- POR QUÉ ELEGIR (sin bordes redondeados) ----- */
     .reasons-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -311,26 +352,26 @@
       margin-top: 16px;
     }
     .reason-card {
-      background: #f9fbfd;
+      background: var(--gris-claro);
       padding: 24px 16px;
-      border-radius: 20px;
       text-align: center;
-      border: 1px solid #eef2f6;
+      border: 1px solid var(--gris-borde);
       transition: all 0.2s;
     }
     .reason-card:hover {
-      border-color: #1b8c6e;
-      box-shadow: 0 8px 24px rgba(27, 140, 110, 0.08);
+      border-color: var(--rojo);
+      box-shadow: 0 8px 24px rgba(191, 39, 44, 0.08);
     }
     .reason-card i {
       font-size: 2.2rem;
-      color: #1b8c6e;
+      color: var(--rojo);
       margin-bottom: 12px;
     }
     .reason-card h4 {
+      font-family: 'Lexend Deca', sans-serif;
+      font-weight: 500;
       font-size: 1rem;
-      font-weight: 600;
-      color: #0b2b4a;
+      color: #1a1a1a;
     }
 
     /* ----- SERVICIOS (cards) ----- */
@@ -340,33 +381,33 @@
       gap: 28px;
     }
     .service-card {
-      background: #f9fbfd;
-      border-radius: 24px;
+      background: var(--gris-claro);
       padding: 24px 20px;
       text-align: center;
       transition: all 0.2s;
-      border: 1px solid #eef2f6;
+      border: 1px solid var(--gris-borde);
     }
     .service-card:hover {
-      border-color: #0b2b4a;
+      border-color: var(--rojo);
       transform: translateY(-4px);
     }
     .service-card .icon {
       font-size: 2.8rem;
-      color: #0b2b4a;
+      color: var(--rojo);
       margin-bottom: 12px;
     }
     .service-card h4 {
+      font-family: 'Lexend Deca', sans-serif;
+      font-weight: 500;
       font-size: 1.1rem;
-      font-weight: 600;
       margin-bottom: 8px;
     }
     .service-card p {
       font-size: 0.95rem;
-      color: #4a5a6a;
+      color: var(--gris);
     }
 
-    /* ----- GESTIÓN DE SINIESTROS (timeline) ----- */
+    /* ----- GESTIÓN DE SINIESTROS (timeline sin redondeo) ----- */
     .timeline {
       display: flex;
       flex-wrap: wrap;
@@ -382,31 +423,28 @@
       left: 5%;
       right: 5%;
       height: 3px;
-      background: #d0dce8;
+      background: var(--gris-borde);
       transform: translateY(-50%);
       z-index: 0;
     }
     .timeline-item {
-      background: white;
+      background: var(--gris-claro);
       padding: 12px 16px;
-      border-radius: 40px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-      border: 1px solid #eef2f6;
+      border: 1px solid var(--gris-borde);
       font-weight: 500;
       font-size: 0.9rem;
-      color: #0b2b4a;
+      color: #1a1a1a;
       position: relative;
       z-index: 1;
-      background: #f9fbfd;
       min-width: 80px;
       text-align: center;
       flex: 1 0 auto;
       margin: 4px;
     }
     .timeline-item.highlight {
-      background: #0b2b4a;
+      background: var(--rojo);
       color: white;
-      border-color: #0b2b4a;
+      border-color: var(--rojo);
     }
 
     /* ----- TELECONSULTA ----- */
@@ -427,38 +465,39 @@
       align-items: center;
       gap: 8px;
       font-size: 0.95rem;
-      color: #1a2a3a;
+      color: #1a1a1a;
     }
     .tele-benefit i {
-      color: #1b8c6e;
+      color: var(--rojo);
       width: 20px;
     }
     .mockup {
-      background: #eef2f6;
-      border-radius: 32px;
+      background: var(--gris-claro);
       padding: 20px;
       display: flex;
       justify-content: center;
       gap: 24px;
       flex-wrap: wrap;
+      border: 1px solid var(--gris-borde);
     }
     .mockup .device {
       background: white;
-      border-radius: 20px;
       padding: 16px 12px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.06);
       text-align: center;
       width: 180px;
+      border: 1px solid var(--gris-borde);
     }
     .mockup .device i {
       font-size: 3.6rem;
-      color: #0b2b4a;
+      color: var(--rojo);
       margin-bottom: 8px;
     }
     .mockup .device span {
       display: block;
       font-weight: 500;
       font-size: 0.9rem;
+      color: var(--gris);
     }
 
     /* ----- PROGRAMAS DE SALUD (grid iconos) ----- */
@@ -469,25 +508,25 @@
       margin-top: 16px;
     }
     .program-item {
-      background: #f9fbfd;
-      border-radius: 20px;
+      background: var(--gris-claro);
       padding: 20px 12px;
       text-align: center;
-      border: 1px solid #eef2f6;
+      border: 1px solid var(--gris-borde);
       transition: 0.2s;
     }
     .program-item:hover {
-      border-color: #1b8c6e;
+      border-color: var(--rojo);
     }
     .program-item i {
       font-size: 2.4rem;
-      color: #0b2b4a;
+      color: var(--rojo);
       margin-bottom: 8px;
     }
     .program-item span {
       display: block;
       font-weight: 500;
       font-size: 0.9rem;
+      color: #1a1a1a;
     }
 
     /* ----- COBERTURA NACIONAL ----- */
@@ -498,15 +537,15 @@
       align-items: center;
     }
     .cobertura-map {
-      background: #eef2f6;
-      border-radius: 32px;
+      background: var(--gris-claro);
       height: 300px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.2rem;
-      color: #4a5a6a;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%"><path d="M200 30 L390 150 L330 340 L70 340 L10 150 Z" fill="%23d0dce8" opacity="0.3"/><circle cx="200" cy="200" r="30" fill="%231b8c6e" opacity="0.6"/></svg>');
+      color: var(--gris);
+      border: 1px solid var(--gris-borde);
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%"><path d="M200 30 L390 150 L330 340 L70 340 L10 150 Z" fill="%23d0dce8" opacity="0.3"/><circle cx="200" cy="200" r="30" fill="%23bf272c" opacity="0.6"/></svg>');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -520,7 +559,7 @@
       display: flex;
       justify-content: space-between;
       padding: 12px 0;
-      border-bottom: 1px solid #eef2f6;
+      border-bottom: 1px solid var(--gris-borde);
       font-weight: 500;
     }
 
@@ -534,13 +573,39 @@
       opacity: 0.7;
     }
     .logo-wall span {
+      font-family: 'Lexend Deca', sans-serif;
+      font-weight: 500;
       font-size: 1.4rem;
-      font-weight: 600;
-      color: #3a4a5a;
+      color: var(--gris);
       letter-spacing: 1px;
     }
 
-    /* ----- GRUPO GAMAN ----- */
+    /* ----- GRUPO GAMAN (con imagen de fondo) ----- */
+    #grupo-gaman {
+      background-image: url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+      color: white;
+    }
+    #grupo-gaman::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(95, 92, 101, 0.8);
+      z-index: 0;
+    }
+    #grupo-gaman .container {
+      position: relative;
+      z-index: 1;
+    }
+    #grupo-gaman .section-title {
+      color: white;
+    }
     .gaman-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -554,11 +619,11 @@
       margin-top: 16px;
     }
     .gaman-ecosystem .pill {
-      background: #eef2f6;
+      background: rgba(255,255,255,0.15);
       padding: 8px 20px;
-      border-radius: 40px;
       font-weight: 500;
       font-size: 0.9rem;
+      border: 1px solid rgba(255,255,255,0.2);
     }
     .gaman-stats {
       display: grid;
@@ -566,38 +631,47 @@
       gap: 16px;
     }
     .gaman-stat {
-      background: #f9fbfd;
+      background: rgba(255,255,255,0.08);
       padding: 20px;
-      border-radius: 20px;
       text-align: center;
+      border: 1px solid rgba(255,255,255,0.1);
     }
     .gaman-stat .number {
+      font-family: 'Lexend Deca', sans-serif;
+      font-weight: 600;
       font-size: 2rem;
-      font-weight: 700;
-      color: #0b2b4a;
+      color: white;
     }
 
-    /* ----- CTA FINAL ----- */
+    /* ----- CTA FINAL (sin redondeo) ----- */
     .cta-final {
-      background: #0b2b4a;
+      background: var(--rojo);
       color: white;
       text-align: center;
       padding: 80px 0;
     }
     .cta-final h2 {
+      font-family: 'Lexend Deca', sans-serif;
+      font-weight: 600;
       font-size: 2.4rem;
-      font-weight: 700;
       margin-bottom: 16px;
     }
     .cta-final p {
       font-size: 1.2rem;
-      opacity: 0.8;
+      opacity: 0.85;
       margin-bottom: 32px;
+    }
+    .cta-final .btn {
+      background: white;
+      color: var(--rojo);
+    }
+    .cta-final .btn:hover {
+      background: var(--gris-claro);
     }
 
     /* ----- FOOTER ----- */
     .footer {
-      background: #081f30;
+      background: #1a1a1a;
       color: rgba(255,255,255,0.7);
       padding: 48px 0 24px;
     }
@@ -607,14 +681,16 @@
       gap: 40px;
     }
     .footer h4 {
+      font-family: 'Lexend Deca', sans-serif;
+      font-weight: 500;
       color: white;
       margin-bottom: 16px;
-      font-weight: 600;
     }
     .footer a {
       display: block;
       margin-bottom: 8px;
       font-size: 0.95rem;
+      transition: color 0.2s;
     }
     .footer a:hover {
       color: white;
@@ -659,9 +735,8 @@
       .footer-grid { grid-template-columns: 1fr; }
     }
 
-    /* utilidades */
     .bg-light {
-      background-color: #f8fafc;
+      background-color: var(--gris-claro);
     }
     .mt-2 { margin-top: 16px; }
     .mb-2 { margin-bottom: 16px; }
@@ -684,7 +759,7 @@
   </div>
 </header>
 
-<!-- HERO -->
+<!-- HERO (con imagen de fondo y overlay rojo) -->
 <section class="hero" id="hero">
   <div class="container">
     <div class="hero-content">
@@ -851,8 +926,8 @@
   </div>
 </section>
 
-<!-- GRUPO GAMAN -->
-<section class="bg-light">
+<!-- GRUPO GAMAN (con imagen de fondo y overlay gris) -->
+<section id="grupo-gaman">
   <div class="container">
     <div class="gaman-grid">
       <div>
@@ -880,7 +955,7 @@
   <div class="container">
     <h2>¿Listo para optimizar la salud ocupacional de tu empresa?</h2>
     <p>Contáctanos y descubre cómo podemos ayudarte.</p>
-    <a href="#" class="btn btn-green">Solicitar una reunión</a>
+    <a href="#" class="btn">Solicitar una reunión</a>
   </div>
 </section>
 
