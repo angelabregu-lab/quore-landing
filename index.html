@@ -27,7 +27,7 @@
       font-weight: 400;
       color: #2a2a2a;
       background-color: #ffffff;
-      line-height: 1.6;
+      line-height: 1.8; /* mejora lectura */
     }
 
     a {
@@ -38,7 +38,7 @@
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 32px; /* más aire lateral */
+      padding: 0 32px;
     }
 
     /* ----- COLORES INSTITUCIONALES ----- */
@@ -50,7 +50,7 @@
       --gris-borde: #e0e0e2;
     }
 
-    /* ----- BOTONES (sin bordes redondeados) ----- */
+    /* ----- BOTONES CON EFECTO BARRIDO ----- */
     .btn {
       display: inline-block;
       padding: 14px 36px;
@@ -59,20 +59,42 @@
       font-size: 1rem;
       border: none;
       cursor: pointer;
-      transition: all 0.25s ease;
       background: var(--rojo);
       color: white;
       border-radius: 0;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s ease, transform 0.2s ease;
+      z-index: 1;
+    }
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 200%;
+      height: 200%;
+      background: rgba(255,255,255,0.15);
+      transform: rotate(25deg);
+      transition: all 0.5s ease;
+      z-index: -1;
+    }
+    .btn:hover::after {
+      left: 100%;
     }
     .btn:hover {
       background: #a01f24;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(191, 39, 44, 0.25);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(191, 39, 44, 0.3);
     }
+
     .btn-outline {
       background: transparent;
       border: 2px solid var(--rojo);
       color: var(--rojo);
+    }
+    .btn-outline::after {
+      background: rgba(191, 39, 44, 0.1);
     }
     .btn-outline:hover {
       background: var(--rojo);
@@ -82,6 +104,9 @@
       background: transparent;
       border: 2px solid white;
       color: white;
+    }
+    .btn-outline-light::after {
+      background: rgba(255,255,255,0.2);
     }
     .btn-outline-light:hover {
       background: white;
@@ -104,7 +129,7 @@
       background: rgba(255,255,255,0.92);
       backdrop-filter: blur(6px);
       box-shadow: 0 2px 12px rgba(0,0,0,0.04);
-      padding: 16px 0; /* más espacio vertical */
+      padding: 16px 0;
     }
     .navbar .container {
       display: flex;
@@ -112,13 +137,13 @@
       align-items: center;
     }
     .logo-img {
-      height: 40px; /* tamaño reducido */
+      height: 40px;
       width: auto;
       display: block;
     }
     .nav-links {
       display: flex;
-      gap: 36px; /* más separación */
+      gap: 36px;
       font-weight: 500;
       font-size: 0.95rem;
       align-items: center;
@@ -149,12 +174,12 @@
       cursor: pointer;
     }
 
-    /* ----- HERO con imagen de fondo y overlay ----- */
+    /* ----- HERO (Glassmorphism en stats) ----- */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding-top: 100px; /* más espacio por el navbar */
+      padding-top: 100px;
       padding-bottom: 80px;
       position: relative;
       background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
@@ -169,7 +194,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(191, 39, 44, 0.75);
+      background-color: rgba(191, 39, 44, 0.7);
       z-index: 1;
     }
     .hero .container {
@@ -177,7 +202,7 @@
       z-index: 2;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px; /* más separación */
+      gap: 60px;
       align-items: center;
     }
     .hero-content h1 {
@@ -194,20 +219,25 @@
       color: rgba(255,255,255,0.85);
       margin-bottom: 40px;
       max-width: 540px;
+      line-height: 1.8;
     }
     .hero-buttons {
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
     }
+
+    /* Tarjeta con glassmorphism */
     .hero-stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(4px);
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.2);
       padding: 32px 28px;
-      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     }
     .stat-item {
       color: white;
@@ -222,12 +252,12 @@
     }
     .stat-item .label {
       font-size: 0.95rem;
-      opacity: 0.85;
+      opacity: 0.9;
     }
 
-    /* ----- SECCIONES GENERALES (más padding) ----- */
+    /* ----- SECCIONES (más aire: padding 120px) ----- */
     section {
-      padding: 100px 0; /* más espacio vertical */
+      padding: 120px 0;
     }
     .section-title {
       font-family: 'Lexend Deca', sans-serif;
@@ -235,13 +265,14 @@
       font-size: 2.6rem;
       margin-bottom: 20px;
       color: var(--rojo);
-      letter-spacing: -0.01em;
+      letter-spacing: -1px; /* compacto */
     }
     .section-sub {
       font-size: 1.15rem;
       color: var(--gris);
       max-width: 680px;
       margin-bottom: 56px;
+      line-height: 1.8;
     }
     .text-center {
       text-align: center;
@@ -251,7 +282,7 @@
       margin-right: auto;
     }
 
-    /* ----- FONDO DE IMAGEN CON OVERLAY (para algunas secciones) ----- */
+    /* ----- FONDO DE IMAGEN CON OVERLAY ----- */
     .bg-image-section {
       position: relative;
       background-size: cover;
@@ -280,7 +311,7 @@
       color: rgba(255,255,255,0.85);
     }
 
-    /* ----- QUIENES SOMOS (más espacio) ----- */
+    /* ----- QUIENES SOMOS ----- */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -291,6 +322,7 @@
       font-size: 1.1rem;
       color: #2a2a2a;
       margin-bottom: 20px;
+      line-height: 1.8;
     }
     .about-collage {
       display: grid;
@@ -310,7 +342,7 @@
       height: 100%;
     }
 
-    /* ----- INDICADORES (contadores) ----- */
+    /* ----- INDICADORES ----- */
     .indicators-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -340,7 +372,7 @@
       color: var(--gris);
     }
 
-    /* ----- POR QUÉ ELEGIR (más espacio) ----- */
+    /* ----- POR QUÉ ELEGIR (cards con sombra y elevación) ----- */
     .reasons-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -351,12 +383,14 @@
       background: var(--gris-claro);
       padding: 28px 20px;
       text-align: center;
-      border: 1px solid var(--gris-borde);
-      transition: all 0.2s;
+      border: none;
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
     }
     .reason-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.10);
       border-color: var(--rojo);
-      box-shadow: 0 8px 24px rgba(191, 39, 44, 0.08);
     }
     .reason-card i {
       font-size: 2.4rem;
@@ -370,7 +404,7 @@
       color: #1a1a1a;
     }
 
-    /* ----- SERVICIOS (cards) ----- */
+    /* ----- SERVICIOS (cards con sombra y elevación) ----- */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -380,12 +414,13 @@
       background: var(--gris-claro);
       padding: 32px 24px;
       text-align: center;
-      transition: all 0.2s;
-      border: 1px solid var(--gris-borde);
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+      border: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
     }
     .service-card:hover {
-      border-color: var(--rojo);
-      transform: translateY(-4px);
+      transform: translateY(-15px);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.10);
     }
     .service-card .icon {
       font-size: 3rem;
@@ -401,50 +436,83 @@
     .service-card p {
       font-size: 0.95rem;
       color: var(--gris);
+      line-height: 1.6;
     }
 
-    /* ----- GESTIÓN DE SINIESTROS (timeline) ----- */
-    .timeline {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      margin: 48px 0 16px;
+    /* ----- GESTIÓN DE SINIESTROS (timeline con pasos y gradiente) ----- */
+    .timeline-wrapper {
       position: relative;
+      margin: 48px 0 16px;
+      padding: 0 20px;
+    }
+    .timeline-progress {
+      position: relative;
+      height: 4px;
+      background: var(--gris-borde);
+      margin: 0 20px;
+      border-radius: 0;
+    }
+    .timeline-progress .bar {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, var(--rojo) 0%, #e05a5e 100%);
+      border-radius: 0;
+    }
+    .timeline-steps {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-top: -10px;
+      flex-wrap: wrap;
       gap: 8px;
     }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 5%;
-      right: 5%;
-      height: 3px;
-      background: var(--gris-borde);
-      transform: translateY(-50%);
-      z-index: 0;
-    }
-    .timeline-item {
-      background: var(--gris-claro);
-      padding: 14px 20px;
-      border: 1px solid var(--gris-borde);
-      font-weight: 500;
-      font-size: 0.95rem;
-      color: #1a1a1a;
-      position: relative;
-      z-index: 1;
-      min-width: 90px;
-      text-align: center;
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       flex: 1 0 auto;
-      margin: 4px;
+      min-width: 70px;
+      text-align: center;
+      position: relative;
     }
-    .timeline-item.highlight {
+    .step-item .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: var(--gris-claro);
+      border: 2px solid var(--gris-borde);
+      font-family: 'Lexend Deca', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--gris);
+      margin-bottom: 8px;
+      transition: all 0.3s;
+    }
+    .step-item.active .step-number {
       background: var(--rojo);
-      color: white;
       border-color: var(--rojo);
+      color: white;
+      box-shadow: 0 0 0 8px rgba(191,39,44,0.2);
+      animation: pulse-ring 1.5s infinite;
+    }
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(191,39,44,0.3); }
+      70% { box-shadow: 0 0 0 12px rgba(191,39,44,0); }
+      100% { box-shadow: 0 0 0 0 rgba(191,39,44,0); }
+    }
+    .step-item .step-label {
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: #1a1a1a;
+    }
+    .step-item.active .step-label {
+      color: var(--rojo);
+      font-weight: 600;
     }
 
-    /* ----- TELECONSULTA (más espacio) ----- */
+    /* ----- TELECONSULTA ----- */
     .teleconsulta-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -498,7 +566,7 @@
       color: var(--gris);
     }
 
-    /* ----- PROGRAMAS DE SALUD (grid iconos) ----- */
+    /* ----- PROGRAMAS DE SALUD ----- */
     .programs-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -527,7 +595,7 @@
       color: #1a1a1a;
     }
 
-    /* ----- COBERTURA NACIONAL (más espacio) ----- */
+    /* ----- COBERTURA NACIONAL ----- */
     .cobertura-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -562,21 +630,41 @@
       font-size: 1.05rem;
     }
 
-    /* ----- CLIENTES (logo wall) ----- */
-    .logo-wall {
+    /* ----- CARRUSEL INFINITO DE CLIENTES (Social Proof) ----- */
+    .clientes-carousel {
+      background: var(--gris-claro);
+      padding: 60px 0;
+      overflow: hidden;
+    }
+    .clientes-carousel .section-title {
+      margin-bottom: 40px;
+    }
+    .carousel-track {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 48px 72px;
-      margin-top: 40px;
+      gap: 60px;
+      animation: scroll 40s linear infinite;
+      width: max-content;
+    }
+    .carousel-track img {
+      height: 50px;
+      width: auto;
+      filter: grayscale(100%) brightness(0.6);
+      transition: filter 0.3s ease;
       opacity: 0.7;
     }
-    .logo-wall span {
-      font-family: 'Lexend Deca', sans-serif;
-      font-weight: 500;
-      font-size: 1.5rem;
-      color: var(--gris);
-      letter-spacing: 1px;
+    .carousel-track img:hover {
+      filter: grayscale(0%) brightness(1);
+      opacity: 1;
+    }
+    .carousel-wrapper {
+      display: flex;
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     /* ----- GRUPO GAMAN (con imagen de fondo) ----- */
@@ -642,23 +730,25 @@
       color: white;
     }
 
-    /* ----- CTA FINAL (más espacio) ----- */
+    /* ----- CTA FINAL ----- */
     .cta-final {
       background: var(--rojo);
       color: white;
       text-align: center;
-      padding: 100px 0;
+      padding: 120px 0;
     }
     .cta-final h2 {
       font-family: 'Lexend Deca', sans-serif;
       font-weight: 600;
       font-size: 2.6rem;
       margin-bottom: 20px;
+      letter-spacing: -1px;
     }
     .cta-final p {
       font-size: 1.25rem;
       opacity: 0.85;
       margin-bottom: 40px;
+      line-height: 1.8;
     }
     .cta-final .btn {
       background: white;
@@ -669,7 +759,7 @@
       background: var(--gris-claro);
     }
 
-    /* ----- FOOTER (con logo en lugar de texto) ----- */
+    /* ----- FOOTER ----- */
     .footer {
       background: #1a1a1a;
       color: rgba(255,255,255,0.7);
@@ -685,6 +775,7 @@
       font-weight: 500;
       color: white;
       margin-bottom: 16px;
+      letter-spacing: -0.5px;
     }
     .footer a {
       display: block;
@@ -727,6 +818,7 @@
       .cobertura-grid { grid-template-columns: 1fr; }
       .gaman-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
+      section { padding: 80px 0; }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -734,13 +826,15 @@
       .hero-content h1 { font-size: 2.2rem; }
       .hero-stats { grid-template-columns: 1fr 1fr; }
       .reasons-grid { grid-template-columns: 1fr; }
-      .timeline { flex-direction: column; align-items: stretch; }
-      .timeline::before { display: none; }
-      .timeline-item { margin: 6px 0; }
+      .timeline-steps { flex-direction: column; align-items: stretch; gap: 12px; }
+      .timeline-progress { display: none; }
+      .step-item { flex-direction: row; gap: 12px; align-items: center; }
+      .step-item .step-number { width: 32px; height: 32px; font-size: 0.8rem; margin-bottom: 0; }
       .tele-benefits { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
       .container { padding: 0 20px; }
-      section { padding: 70px 0; }
+      section { padding: 60px 0; }
+      .carousel-track img { height: 35px; }
     }
 
     .bg-light {
@@ -769,7 +863,7 @@
   </div>
 </header>
 
-<!-- HERO (con imagen de fondo y overlay rojo) -->
+<!-- HERO -->
 <section class="hero" id="hero">
   <div class="container">
     <div class="hero-content">
@@ -849,17 +943,43 @@
   </div>
 </section>
 
-<!-- GESTIÓN DE SINIESTROS (timeline) -->
+<!-- GESTIÓN DE SINIESTROS (timeline mejorado) -->
 <section class="container">
   <h2 class="section-title text-center">Gestión de Siniestros</h2>
-  <div class="timeline">
-    <div class="timeline-item highlight">Accidente</div>
-    <div class="timeline-item">Recepción</div>
-    <div class="timeline-item">Triage</div>
-    <div class="timeline-item">Derivación</div>
-    <div class="timeline-item">Seguimiento</div>
-    <div class="timeline-item">ART</div>
-    <div class="timeline-item highlight">Alta</div>
+  <div class="timeline-wrapper">
+    <div class="timeline-progress">
+      <div class="bar"></div>
+    </div>
+    <div class="timeline-steps">
+      <div class="step-item active">
+        <span class="step-number">1</span>
+        <span class="step-label">Accidente</span>
+      </div>
+      <div class="step-item">
+        <span class="step-number">2</span>
+        <span class="step-label">Recepción</span>
+      </div>
+      <div class="step-item">
+        <span class="step-number">3</span>
+        <span class="step-label">Triage</span>
+      </div>
+      <div class="step-item">
+        <span class="step-number">4</span>
+        <span class="step-label">Derivación</span>
+      </div>
+      <div class="step-item">
+        <span class="step-number">5</span>
+        <span class="step-label">Seguimiento</span>
+      </div>
+      <div class="step-item">
+        <span class="step-number">6</span>
+        <span class="step-label">ART</span>
+      </div>
+      <div class="step-item active">
+        <span class="step-number">7</span>
+        <span class="step-label">Alta</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -921,22 +1041,36 @@
   </div>
 </section>
 
-<!-- CLIENTES -->
-<section class="container" id="clientes">
-  <h2 class="section-title text-center">Más de 1.000 empresas confían en Quore</h2>
-  <div class="logo-wall">
-    <span>Empresa A</span>
-    <span>Corporación B</span>
-    <span>Grupo C</span>
-    <span>Industrias D</span>
-    <span>Servicios E</span>
-    <span>Logística F</span>
-    <span>Minera G</span>
-    <span>Alimentos H</span>
+<!-- CARRUSEL INFINITO DE CLIENTES (Social Proof) -->
+<section class="clientes-carousel" id="clientes">
+  <div class="container">
+    <h2 class="section-title text-center">Empresas que confían en Quore</h2>
+    <div class="carousel-wrapper">
+      <div class="carousel-track">
+        <!-- Logos duplicados para efecto infinito -->
+        <img src="https://via.placeholder.com/120x50/cccccc/969696?text=Empresa+A" alt="Cliente">
+        <img src="https://via.placeholder.com/120x50/cccccc/969696?text=Corp+B" alt="Cliente">
+        <img src="https://via.placeholder.com/120x50/cccccc/969696?text=Grupo+C" alt="Cliente">
+        <img src="https://via.placeholder.com/120x50/cccccc/969696?text=Industrias+D" alt="Cliente">
+        <img src="https://via.placeholder.com/120x50/cccccc/969696?text=Servicios+E" alt="Cliente">
+        <img src="https://via.placeholder.com/120x50/cccccc/969696?text=Logística+F" alt="Cliente">
+        <img src="https://via.placeholder.com/120x50/cccccc/969696?text=Minera+G" alt="Cliente">
+        <img src="https://via.placeholder.com/120x50/cccccc/969696?text=Alimentos+H" alt="Cliente">
+        <!-- Repetimos para el loop -->
+        <img src="https://via.placeholder.com/120x50/cccccc/969696?text=Empresa+A" alt="Cliente">
+        <img src="https://via.placeholder.com/120x50/cccccc/969696?text=Corp+B" alt="Cliente">
+        <img src="https://via.placeholder.com/120x50/cccccc/969696?text=Grupo+C" alt="Cliente">
+        <img src="https://via.placeholder.com/120x50/cccccc/969696?text=Industrias+D" alt="Cliente">
+        <img src="https://via.placeholder.com/120x50/cccccc/969696?text=Servicios+E" alt="Cliente">
+        <img src="https://via.placeholder.com/120x50/cccccc/969696?text=Logística+F" alt="Cliente">
+        <img src="https://via.placeholder.com/120x50/cccccc/969696?text=Minera+G" alt="Cliente">
+        <img src="https://via.placeholder.com/120x50/cccccc/969696?text=Alimentos+H" alt="Cliente">
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- GRUPO GAMAN (con imagen de fondo y overlay gris) -->
+<!-- GRUPO GAMAN -->
 <section id="grupo-gaman">
   <div class="container">
     <div class="gaman-grid">
@@ -1031,7 +1165,6 @@
           nav.style.gap = '16px';
         }
       });
-      // Cerrar al hacer clic en un enlace
       nav.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           nav.style.display = 'none';
