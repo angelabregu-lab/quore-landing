@@ -34,7 +34,7 @@
         
         .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
         
-        /* Botones */
+        /* Botones Rectos */
         .btn { 
             display: inline-block; 
             padding: 15px 35px; 
@@ -53,11 +53,11 @@
         .btn-secondary { background: transparent; color: white; border: 2px solid white; margin-left: 10px; }
         .btn-secondary:hover { background: white; color: var(--primary-red); }
 
-        /* Animaciones al Scrollear */
+        /* Animaciones */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* HERO SECTION */
+        /* 1. HERO */
         .hero { 
             height: 100vh; 
             min-height: 650px;
@@ -91,28 +91,48 @@
         .section-padding { padding: clamp(60px, 10vw, 120px) 0; }
         .flex-cols { display: flex; gap: 50px; align-items: center; flex-wrap: wrap; }
         .col { flex: 1; min-width: 300px; }
-        
+
         /* INDICADORES */
-        .indicators { background: var(--dark-gray); color: white; padding: 80px 0; }
+        .indicators { background: var(--dark-gray); color: white; padding: 100px 0; }
         .indicators-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 40px; text-align: center; }
-        .num { display: block; font-size: 3rem; font-weight: 900; color: var(--primary-red); }
-        .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.8; }
+        .num { display: block; font-size: 3.5rem; font-weight: 900; color: var(--primary-red); }
+        .label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.8; }
+
+        /* VENTAJAS */
+        .grid-8 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; background: #eee; border: 2px solid #eee; margin-top: 50px; }
+        .icon-card { background: white; padding: 40px 30px; transition: 0.3s; position: relative; overflow: hidden; }
+        .icon-card:hover { background: var(--primary-red); color: white; }
+        .icon-card h5 { position: relative; z-index: 2; font-size: 1rem; text-transform: uppercase; font-weight: 700; }
 
         /* SERVICIOS */
         .bg-gray { background: var(--bg-light); }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 50px; }
-        .service-card { background: white; padding: 40px; transition: 0.3s; border-top: 5px solid transparent; }
-        .service-card:hover { border-top-color: var(--primary-red); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .service-card h3 { font-size: 1.2rem; margin-bottom: 15px; color: var(--primary-red); text-transform: uppercase; font-weight: 900; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
+        .service-card { background: white; padding: 50px 30px; transition: 0.3s; border-left: 0 solid var(--primary-red); }
+        .service-card:hover { transform: translateY(-10px); border-left-width: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .service-card h3 { font-size: 1.2rem; margin-bottom: 20px; color: var(--primary-red); text-transform: uppercase; font-weight: 900; }
+
+        /* TIMELINE */
+        .timeline { display: flex; justify-content: space-between; margin-top: 80px; position: relative; flex-wrap: wrap; }
+        .timeline::after { content: ''; position: absolute; top: 20px; left: 0; width: 100%; height: 4px; background: #eee; z-index: 0; }
+        .step { position: relative; z-index: 1; text-align: center; flex: 1; min-width: 120px; margin-bottom: 30px; }
+        .step-box { width: 45px; height: 45px; background: var(--primary-red); color: white; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .step p { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
+
+        /* TELECONSULTA */
+        .tele-section { background: var(--dark-gray); color: white; padding: 120px 0; }
+        .tele-list { list-style: none; margin-top: 30px; }
+        .tele-list li { margin-bottom: 15px; padding-left: 30px; position: relative; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; }
+        .tele-list li::before { content: '>'; position: absolute; left: 0; color: var(--primary-red); font-weight: 900; }
 
         /* GRUPO GAMAN */
-        .gaman-footer { text-align: center; padding: 80px 0; border-top: 1px solid #eee; }
-        .gaman-footer h2 { text-transform: uppercase; font-size: 2rem; font-weight: 900; }
-        .gaman-footer span { color: var(--primary-red); }
+        .gaman-footer { text-align: center; padding: 100px 0; border-top: 10px solid var(--primary-red); }
+        .ecosystem { font-size: clamp(1.5rem, 5vw, 2.5rem); font-weight: 900; text-transform: uppercase; margin: 20px 0; }
+        .ecosystem span { color: var(--primary-red); }
 
         /* RESPONSIVE */
         @media (max-width: 992px) {
             .hero-card { display: none; }
+            .timeline::after { display: none; }
             .hero-content { text-align: center; justify-content: center; }
             .hero p { border-left: none; border-bottom: 4px solid var(--primary-red); padding: 0 0 20px 0; }
             .btn-secondary { margin-left: 0; margin-top: 15px; }
@@ -121,16 +141,16 @@
 </head>
 <body>
 
-    <!-- HERO -->
+    <!-- 1. HERO -->
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="container hero-content">
             <div class="hero-text">
                 <h1>Gestión integral de <br>salud ocupacional.</h1>
-                <p>Centralizamos medicina laboral, siniestros y ausentismo en un único interlocutor estratégico para su empresa.</p>
+                <p>Centralizamos medicina laboral, siniestros y ausentismo en un único interlocutor estratégico para optimizar su inversión en capital humano.</p>
                 <div class="hero-btns">
-                    <a href="#contacto" class="btn btn-primary">Solicitar asesoramiento</a>
-                    <a href="#servicios" class="btn btn-secondary">Ver servicios</a>
+                    <a href="#servicios" class="btn btn-primary">Nuestros Servicios</a>
+                    <a href="#contacto" class="btn btn-secondary">Contacto</a>
                 </div>
             </div>
             <div class="hero-card">
@@ -142,47 +162,103 @@
         </div>
     </section>
 
-    <!-- QUIÉNES SOMOS -->
+    <!-- 2. QUIÉNES SOMOS -->
     <section class="section-padding reveal">
         <div class="container flex-cols">
             <div class="col">
-                <h2 style="font-size: 2.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 20px;">Quiénes <span style="color: var(--primary-red);">somos</span></h2>
-                <p>Quore es la gerenciadora de servicios de salud del <strong>Grupo Gaman</strong>. Diseñamos soluciones de medicina laboral a medida con el respaldo de un holding líder.</p>
+                <h2 style="font-size: 2.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 30px;">Quiénes <span style="color: var(--primary-red);">somos</span></h2>
+                <p>Quore es la gerenciadora de servicios de salud del <strong>Grupo Gaman</strong>. Diseñamos soluciones de medicina laboral a medida, integrando la fuerza operativa de un holding líder con la precisión técnica que su empresa requiere.</p>
             </div>
-            <div class="col" style="background: #f0f0f0; height: 300px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #ccc;">
-                [ IMAGEN CORPORATIVA ]
+            <div class="col" style="background: #f4f4f4; height: 350px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #ddd; border: 1px solid #eee;">
+                [ INFRAESTRUCTURA ]
             </div>
         </div>
     </section>
 
-    <!-- INDICADORES -->
+    <!-- 3. INDICADORES -->
     <section class="indicators">
         <div class="container">
             <div class="indicators-grid">
-                <div class="stat-box"><span class="num">+60</span><span class="label">Años de Trayectoria</span></div>
-                <div class="stat-box"><span class="num">100%</span><span class="label">Cobertura País</span></div>
-                <div class="stat-box"><span class="num">+1k</span><span class="label">Clientes Activos</span></div>
+                <div class="stat-box reveal"><span class="num">+60</span><span class="label">Años</span></div>
+                <div class="stat-box reveal"><span class="num">+1.000</span><span class="label">Clientes</span></div>
+                <div class="stat-box reveal"><span class="num">100%</span><span class="label">Cobertura</span></div>
+                <div class="stat-box reveal"><span class="num">15</span><span class="label">Unidades</span></div>
             </div>
         </div>
     </section>
 
-    <!-- SERVICIOS -->
+    <!-- 4. VENTAJAS -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 style="text-align: center; font-weight: 900; text-transform: uppercase; margin-bottom: 50px;">Ventajas <span style="color: var(--primary-red);">Competitivas</span></h2>
+            <div class="grid-8">
+                <div class="icon-card"><h5>Un único interlocutor</h5></div>
+                <div class="icon-card"><h5>Red nacional de prestadores</h5></div>
+                <div class="icon-card"><h5>Plataforma online de gestión</h5></div>
+                <div class="icon-card"><h5>Coordinación médica propia</h5></div>
+                <div class="icon-card"><h5>Reducción del ausentismo</h5></div>
+                <div class="icon-card"><h5>Seguimiento de siniestros</h5></div>
+                <div class="icon-card"><h5>Información centralizada</h5></div>
+                <div class="icon-card"><h5>Respaldo Grupo Gaman</h5></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SERVICIOS -->
     <section id="servicios" class="section-padding bg-gray">
         <div class="container">
-            <h2 style="font-size: 2.5rem; font-weight: 900; text-transform: uppercase; text-align: center;">Nuestros <span style="color: var(--primary-red);">Servicios</span></h2>
+            <h2 style="font-size: 2.5rem; font-weight: 900; text-transform: uppercase; margin-bottom: 50px;">Ejes de <span style="color: var(--primary-red);">Servicio</span></h2>
             <div class="services-grid">
                 <div class="service-card reveal">
                     <h3>Medicina Laboral</h3>
-                    <p>Exámenes de ingreso, periódicos y egreso con validez legal.</p>
+                    <p>Exámenes de ingreso, periódicos y egreso. Consultoría técnica legal.</p>
                 </div>
                 <div class="service-card reveal">
-                    <h3>Control de Ausentismo</h3>
-                    <p>Gestión médica rigurosa y reportes en tiempo real para la toma de decisiones.</p>
+                    <h3>Gestión Ausentismo</h3>
+                    <p>Control médico riguroso con reportes inmediatos de estado de salud.</p>
+                </div>
+                <div class="service-card reveal" style="background: var(--dark-gray); color: white;">
+                    <h3>Siniestros</h3>
+                    <p>Gestión 24/7 y seguimiento administrativo completo ante la ART.</p>
                 </div>
                 <div class="service-card reveal">
-                    <h3>Gestión de Siniestros</h3>
-                    <p>Asistencia 24/7 y coordinación integral con la ART ante accidentes.</p>
+                    <h3>Bienestar</h3>
+                    <p>Programas de salud preventiva para potenciar el capital humano.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. WORKFLOW SINIESTROS -->
+    <section class="section-padding reveal">
+        <div class="container">
+            <h2 style="text-align: center; font-weight: 900; text-transform: uppercase; margin-bottom: 60px;">Work-Flow <span style="color: var(--primary-red);">Siniestros</span></h2>
+            <div class="timeline">
+                <div class="step"><div class="step-box">1</div><p>Accidente</p></div>
+                <div class="step"><div class="step-box">2</div><p>Recepción</p></div>
+                <div class="step"><div class="step-box">3</div><p>Triage</p></div>
+                <div class="step"><div class="step-box">4</div><p>Derivación</p></div>
+                <div class="step"><div class="step-box">5</div><p>Seguimiento</p></div>
+                <div class="step"><div class="step-box">6</div><p>ART</p></div>
+                <div class="step"><div class="step-box">7</div><p>Alta</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. TELECONSULTA -->
+    <section class="tele-section">
+        <div class="container flex-cols">
+            <div class="col reveal">
+                <h2 style="font-size: 3rem; font-weight: 900; text-transform: uppercase; margin-bottom: 40px; line-height: 0.9;">Teleconsulta <br><span style="color: var(--primary-red);">Directa</span></h2>
+                <ul class="tele-list">
+                    <li>Geolocalización prestadores</li>
+                    <li>Historia clínica digital</li>
+                    <li>Informes online inmediatos</li>
+                    <li>95% de resolución remota</li>
+                </ul>
+            </div>
+            <div class="col" style="background: #111; height: 350px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #333; border: 1px solid #222;">
+                [ DIGITAL SOLUTIONS ]
             </div>
         </div>
     </section>
@@ -190,14 +266,26 @@
     <!-- GRUPO GAMAN -->
     <section class="gaman-footer">
         <div class="container">
-            <h2>Ecosistema Grupo <span>Gaman</span></h2>
-            <p style="margin-top: 15px; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; font-weight: bold;">Seguros · Prevención · Salud · Soluciones</p>
+            <h2 style="text-transform: uppercase; font-size: 1rem; letter-spacing: 5px; color: var(--text-gray);">Unidad de Negocio</h2>
+            <div class="ecosystem">
+                Seguros · Prevención · <span>Salud</span> · Soluciones
+            </div>
+            <p style="font-weight: 900; text-transform: uppercase;">Ecosistema Grupo Gaman</p>
         </div>
     </section>
 
+    <!-- FOOTER -->
+    <footer id="contacto" style="background: #111; color: #777; padding: 80px 0 40px; text-align: center;">
+        <div class="container">
+            <h2 style="color: white; font-weight: 900; text-transform: uppercase; margin-bottom: 40px;">¿Hablamos?</h2>
+            <a href="#" class="btn btn-primary">Solicitar Asesoramiento</a>
+            <p style="margin-top: 50px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">&copy; 2026 Quore Salud | Grupo Gaman. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
     <script>
-        // Función para animaciones al scrollear
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', reveal);
+        function reveal() {
             var reveals = document.querySelectorAll('.reveal');
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
@@ -206,7 +294,8 @@
                     reveals[i].classList.add('active');
                 }
             }
-        });
+        }
+        reveal();
     </script>
 </body>
 </html>
